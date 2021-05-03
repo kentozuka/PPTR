@@ -2,6 +2,7 @@ import * as S3 from 'aws-sdk/clients/s3'
 import { log } from './log'
 import { env } from './util'
 
+ // @ts-ignore
 const bucket = new S3({
   accessKeyId: env.accessKeyId,
   secretAccessKey: env.secretAccessKey,

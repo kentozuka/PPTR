@@ -18,6 +18,7 @@ export const init = async () => {
     return page
   } catch (e) {
     log(e)
+    return null
   }
 }
 
