@@ -1,7 +1,7 @@
-import { PageA as Page } from './pptr'
+import { PageA as Page } from './main'
 
-import { log } from "./log"
-import { deleteFile, readFile, writeFile } from "./s3"
+import { log } from "../utility/log"
+import { deleteFile, readFile, writeFile } from "../aws/s3"
 
 const pathOf = (username: string) => `cookies/${username.replace('.', '_')}.txt`
 

@@ -1,8 +1,7 @@
-import * as S3 from 'aws-sdk/clients/s3'
-import { log } from './log'
-import { env } from './util'
+import S3 from 'aws-sdk/clients/s3'
+import { log } from '../utility/log'
+import { env } from '../utility/env'
 
- // @ts-ignore
 const bucket = new S3({
   accessKeyId: env.accessKeyId,
   secretAccessKey: env.secretAccessKey,
@@ -16,6 +15,10 @@ export const readFile = async (Key: string) => {
       Key
     }).promise()
 
+    if (!data) {
+      log('No data found')
+      return null
+    }
     const u = data.Body.toString('utf-8')
     return u
   } catch (e) {

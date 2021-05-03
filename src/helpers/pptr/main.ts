@@ -1,8 +1,8 @@
 import * as puppeteer from 'puppeteer'
 import { Browser, Page } from 'puppeteer'
-import { log } from './log'
+import { log } from '../utility/log'
 
-import { constants as c } from './util'
+import { constants as c } from '../utility/env'
 
 export const init = async () => {
   try {

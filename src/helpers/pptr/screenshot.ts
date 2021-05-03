@@ -1,6 +1,6 @@
-import { PageA as Page } from "./pptr";
-import { log } from "./log";
-import { savePhoto } from "./s3";
+import { PageA as Page } from "./main";
+import { log } from "../utility/log";
+import { savePhoto } from "../aws/s3";
 
 export const snap = async (page: Page) => {
   try {

@@ -1,6 +1,9 @@
-import { log } from "@/helpers/log"
-import { init, terminate } from "@/helpers/pptr"
-import { constants } from "@/helpers/util"
+import {
+  log,
+  init,
+  terminate,
+  constants
+} from 'helpers'
 
 async function main () {
   const page = await init()
