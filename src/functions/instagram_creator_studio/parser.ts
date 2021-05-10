@@ -183,7 +183,7 @@ export function parseGraph(json: Graph): InsightModifiedGraph | null {
     extractNumber,
     {
       key: 'name',
-      value: 'EPLORE'
+      value: 'EXPLORE'
     },
     'value',
     'impressions',
