@@ -116,6 +116,10 @@ async function main() {
       await cells[6 * len].click()
     }
 
+    console.log({
+      graphHolder,
+      contentHolder
+    })
     await saveCookie(page, target, provider)
   } catch (e) {
     log(e)

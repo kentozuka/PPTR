@@ -25,6 +25,7 @@ export interface InsightModifiedContent {
   ownerId: string
   ownerFullName: string
   permalinkUrl: string
+  thumbnail: string
   description: string
   descriptionWithMentions: string
   commentsDisabled: boolean
@@ -225,6 +226,7 @@ export function parseContent(
   const ownerFullName = extractString(json, 'owner_name')
   const permalinkUrl = extractString(json, 'permalink_url')
   const description = extractString(json, 'description')
+  const thumbnail = extractString(json, 'thumbnail_src')
   const descriptionWithMentions = extractString(
     json,
     'description_with_mentions'
@@ -244,6 +246,7 @@ export function parseContent(
     ownerId,
     ownerFullName,
     permalinkUrl,
+    thumbnail,
     description,
     descriptionWithMentions,
     commentsDisabled,
