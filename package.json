@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node --files -r tsconfig-paths/register"
+    "start": "ts-node --files -r tsconfig-paths/register",
+    "build": "tsc -p tsconfig.json",
+    "execute": "node -r tsconfig-paths/register"
   },
   "keywords": [],
   "author": "",
@@ -16,9 +18,9 @@
     "puppeteer": "^9.0.0"
   },
   "devDependencies": {
+    "@types/prompts": "^2.0.11",
     "ts-node": "^9.1.1",
     "tsconfig-paths": "^3.9.0",
-    "tsconfig-paths-webpack-plugin": "^3.5.1",
     "typescript": "^4.2.4"
   }
 }

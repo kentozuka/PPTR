@@ -1,3 +1,5 @@
 export * from './log'
 export * from './time'
 export * from './env'
+export * from './constant'
+export * from './number'

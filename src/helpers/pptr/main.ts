@@ -1,20 +1,31 @@
-import * as puppeteer from 'puppeteer'
+import puppeteer from 'puppeteer'
 import { Browser, Page } from 'puppeteer'
 import { log } from '../utility/log'
 
-import { constants as c } from '../utility/env'
+import { constants as c } from '../utility/constant'
 
-export const init = async () => {
+let browser: Browser | null = null
+
+const option = {
+  headless: false,
+  devtools: false,
+  plain: false
+}
+
+export const initialize = async ({ headless, devtools, plain } = option) => {
   try {
-    const browser = await puppeteer.launch({
-      headless: false,
-      devtools: true
+    browser = await puppeteer.launch({
+      headless,
+      devtools
     })
     const page = await browser.newPage()
-    await page.setUserAgent(c.userAgent)
-    await page.setViewport(c.viewport)
-    await page.setGeolocation(c.geolocation)
+    if (!plain) {
+      await page.setUserAgent(c.userAgent)
+      await page.setViewport(c.viewport)
+      await page.setGeolocation(c.geolocation)
+    }
 
+    log('Successfully initialized a puppeteer instance')
     return page
   } catch (e) {
     log(e)
@@ -22,13 +33,18 @@ export const init = async () => {
   }
 }
 
-export const terminate = async (page: Page) => {
+export const terminate = async (): Promise<boolean> => {
   try {
-    if (!page) return log('Page not provided')
-    const browser = page.browser()
+    if (!browser) {
+      log(new Error('Browser not exists'))
+      return false
+    }
     await browser.close()
+    log('Successfully terminated the puppeteer instance')
+    return true
   } catch (e) {
     log(e)
+    return false
   }
 }
 
