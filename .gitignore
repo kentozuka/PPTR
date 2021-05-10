@@ -38,4 +38,4 @@ dist/**/*
 yarn.lock
 
 # storage
-src/storage
+storage
