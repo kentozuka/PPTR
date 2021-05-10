@@ -7,16 +7,22 @@ interface Profile {
   cookieName: string
   username: string
   password: string
+  id: string
 }
 const profiles: Profile[] = [
   {
     cookieName: 'sheer.jp.insights',
     username: 'sheer.jp',
-    password: 'Sukekanjoshidesu4'
+    password: 'Sukekanjoshidesu4',
+    id: '17841445471017179'
   }
 ]
 
 export const truncateLength = 18
+// for local development only
+const base = 'http://localhost:3000/api'
+export const contentUrl = base + '/contents'
+export const graphUrl = base + '/metrics'
 
 const paces = [
   {

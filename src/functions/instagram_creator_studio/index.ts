@@ -20,10 +20,13 @@ import {
   askPace,
   chooseProfile,
   chooseProvider,
+  contentUrl,
+  graphUrl,
   truncateLength
 } from './config'
 import { default as ss } from './selectors'
 import { Content, Graph } from 'types'
+import axios from 'axios'
 
 const { regularExpressions: r } = constants
 
@@ -31,11 +34,19 @@ async function main() {
   try {
     const profile = await chooseProfile()
     if (!profile) return log(new Error('No profile selected'))
-    const { cookieName: target, username, password } = profile
+    const { cookieName: target, username, password, id } = profile
 
     const limit = await askLimit()
     const pace = await askPace()
     const provider = await chooseProvider()
+
+    const exists = await axios.get(contentUrl, { params: { ownerId: id } })
+    if (exists.status !== 200) {
+      return log(
+        new Error(`Database server error ${JSON.stringify(exists.data)}`)
+      )
+    }
+    const ids = exists.data
 
     const page = await initialize()
     if (!page) return log(new Error('Failed to initialize pptr'))
@@ -62,7 +73,6 @@ async function main() {
     }
 
     const graphHolder: InsightModifiedGraph[] = []
-    const contentHolder: InsightModifiedContent[] = []
 
     page.on('response', async (res) => {
       const url = res.url()
@@ -82,12 +92,15 @@ async function main() {
         const json: Content = await res.json()
         if (json && json.data.length) {
           const data = parseContent(json.data[0])
-          if (data) {
-            contentHolder.push(data)
+          if (data && !ids.includes(data.id)) {
+            const added = await axios.post(contentUrl, data)
+            if (added.status !== 200) {
+              return log(
+                new Error(`Failed to add content ${JSON.stringify(added.data)}`)
+              )
+            }
             log(
-              `CONTENT-${
-                contentHolder.length
-              }: ${data.description.trim().substring(0, truncateLength)}`
+              `CONTENT: ${data.description.trim().substring(0, truncateLength)}`
             )
           }
         }
@@ -116,11 +129,10 @@ async function main() {
       await cells[6 * len].click()
     }
 
-    console.log({
-      graphHolder,
-      contentHolder
-    })
+    const fin = await axios.post(graphUrl, graphHolder)
+    if (fin.status !== 200) log(new Error('Failed to upload contents'))
     await saveCookie(page, target, provider)
+    await sleep(5 * pace)
   } catch (e) {
     log(e)
   } finally {
