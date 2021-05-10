@@ -193,6 +193,7 @@ export function parseGraph(json: Graph): InsightModifiedGraph | null {
   const est = extractNestedValue<number>(
     insights,
     extractNumber,
+    'surfaces',
     'impressions',
     'value'
   )
