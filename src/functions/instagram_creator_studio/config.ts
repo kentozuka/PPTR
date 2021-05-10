@@ -38,12 +38,12 @@ const providers: {
   value: Providers
 }[] = [
   {
-    title: 'Local',
-    value: 'local'
-  },
-  {
     title: 'AWS S3',
     value: 's3'
+  },
+  {
+    title: 'Local',
+    value: 'local'
   }
 ]
 
