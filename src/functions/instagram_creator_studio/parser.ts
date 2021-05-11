@@ -1,4 +1,4 @@
-import { env, log } from 'helpers'
+import { env, getTime, log } from 'helpers'
 import { Content, Graph } from 'types'
 
 export interface InsightModifiedGraph {
@@ -18,6 +18,7 @@ export interface InsightModifiedGraph {
   impressionFromHashtag: number
   impressionFromExplore: number
   impressionFromOther: number
+  scrapedAt: number
 }
 
 export interface InsightModifiedContent {
@@ -215,7 +216,8 @@ export function parseGraph(json: Graph): InsightModifiedGraph | null {
     impressionFromProfile,
     impressionFromHashtag,
     impressionFromExplore,
-    impressionFromOther
+    impressionFromOther,
+    scrapedAt: getTime()
   }
 }
 

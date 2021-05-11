@@ -20,6 +20,7 @@ const profiles: Profile[] = [
 
 export const truncateLength = 18
 // for local development only
+// put this in the env
 const base = 'http://localhost:3000/api'
 export const contentUrl = base + '/contents'
 export const graphUrl = base + '/metrics'

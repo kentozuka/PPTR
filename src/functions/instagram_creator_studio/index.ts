@@ -1,10 +1,4 @@
 import {
-  InsightModifiedContent,
-  InsightModifiedGraph,
-  parseContent,
-  parseGraph
-} from './parser'
-import {
   initialize,
   log,
   terminate,
@@ -24,6 +18,7 @@ import {
   graphUrl,
   truncateLength
 } from './config'
+import { InsightModifiedGraph, parseContent, parseGraph } from './parser'
 import { default as ss } from './selectors'
 import { Content, Graph } from 'types'
 import axios from 'axios'
@@ -67,7 +62,6 @@ async function main() {
       await typeIn(popup, ss.passwordField, password)
       await popup.click(ss.loginBtn)
       await sleep(3 * pace)
-      // wants to click the second btn if not cookies are not saved
       await popup.click(ss.saveLaterBtn)
       await sleep(3 * pace)
     }
@@ -130,7 +124,7 @@ async function main() {
     }
 
     const fin = await axios.post(graphUrl, graphHolder)
-    if (fin.status !== 200) log(new Error('Failed to upload contents'))
+    if (fin.status !== 200) log(new Error('Failed to upload metrics'))
     await saveCookie(page, target, provider)
     await sleep(5 * pace)
   } catch (e) {
