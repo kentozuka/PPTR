@@ -15,5 +15,5 @@ export const sleep = (ms: number) =>
   })
 
 export const getTime = () => {
-  return new Date().getTime() / 1000
+  return Math.floor(new Date().getTime() / 1000)
 }

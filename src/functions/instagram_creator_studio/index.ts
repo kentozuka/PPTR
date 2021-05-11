@@ -26,6 +26,8 @@ import axios from 'axios'
 const { regularExpressions: r } = constants
 
 async function main() {
+  const graphHolder: InsightModifiedGraph[] = []
+
   try {
     const profile = await chooseProfile()
     if (!profile) return log(new Error('No profile selected'))
@@ -65,8 +67,6 @@ async function main() {
       await popup.click(ss.saveLaterBtn)
       await sleep(3 * pace)
     }
-
-    const graphHolder: InsightModifiedGraph[] = []
 
     page.on('response', async (res) => {
       const url = res.url()
@@ -117,20 +117,23 @@ async function main() {
       await tip.hover()
       await tip.click()
 
+      page.waitForSelector(ss.modal).catch(() => log('Timeout'))
       await sleep(pace)
       const slided = await page.$(ss.modal)
-      if (slided) await page.click(ss.modalCloseBtn)
-      await cells[6 * len].click()
+      if (slided) {
+        await page.click(ss.modalCloseBtn)
+        await cells[6 * len].click()
+      }
     }
 
-    const fin = await axios.post(graphUrl, graphHolder)
-    if (fin.status !== 200) log(new Error('Failed to upload metrics'))
     await saveCookie(page, target, provider)
-    await sleep(5 * pace)
   } catch (e) {
     log(e)
   } finally {
     await terminate()
+    const fin = await axios.post(graphUrl, graphHolder)
+    if (fin.status !== 200) log(new Error('Failed to upload metrics'))
+    if (fin.status === 200) log('Successfully uploaded graphs')
   }
 }
 
