@@ -7,5 +7,6 @@ export default {
     submit: '#btn-save'
   },
   course: 'https://wsdmoodle.waseda.jp/course/view.php?id=',
-  attendance: 'https://wsdmoodle.waseda.jp/mod/attendance/view.php?id='
+  attendance: 'https://wsdmoodle.waseda.jp/mod/attendance/view.php?id=',
+  slide: '//*[contains(text(),"スライド")]/ancestor::a'
 }
