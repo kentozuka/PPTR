@@ -7,7 +7,7 @@
     "start": "ts-node --files -r tsconfig-paths/register",
     "build": "tsc -p tsconfig.json",
     "execute": "node -r tsconfig-paths/register",
-    "attendance-europe": "npm run start src/functions/moodle/attendance"
+    "europe": "npm run start src/functions/moodle/attendance"
   },
   "keywords": [],
   "author": "",

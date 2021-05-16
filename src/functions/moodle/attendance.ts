@@ -25,7 +25,7 @@ const p = {
 }
 
 async function main() {
-  if (p.username && p.password) return log('Set profile')
+  if (!(p.username && p.password)) return log('Set profile')
 
   try {
     const page = await initialize()
@@ -36,8 +36,8 @@ async function main() {
     if (page.url() === login.url) {
       await page.click(login.button)
       await sleep(2 * k)
-      await typeIn(page, login.username, p.username as string)
-      await typeIn(page, login.password, p.password as string)
+      await typeIn(page, login.username, p.username)
+      await typeIn(page, login.password, p.password)
       await page.click(login.submit)
     }
 
