@@ -39,3 +39,6 @@ yarn.lock
 
 # storage
 storage
+
+# json file
+*.txt

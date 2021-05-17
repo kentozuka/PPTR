@@ -15,5 +15,8 @@ export default {
   original: (id: string) =>
     `https://wcms.waseda.jp/contents/WASEDA1001/${id}/contents/web_files/original.pdf`,
   totalNum: '.vc-pctrl-total-page',
-  expand: '#toggles-all-opened'
+  expand: '#toggles-all-opened',
+  notification: '#user-notifications',
+  menu: '#action-menu-toggle-1',
+  logout: 'a[data-title="logout,moodle"]'
 }

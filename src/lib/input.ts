@@ -9,7 +9,10 @@ export const ask = async (message: string) => {
   return response
 }
 
-export const choose = async (message: string, choices: Choice[]) => {
+export const choose = async (
+  message: string,
+  choices: Choice[]
+): Promise<string | number> => {
   const { response } = await prompts({
     type: 'select',
     choices,
@@ -19,7 +22,10 @@ export const choose = async (message: string, choices: Choice[]) => {
   return response
 }
 
-export const count = async (message: string, initial: number = 100) => {
+export const count = async (
+  message: string,
+  initial: number = 100
+): Promise<number> => {
   const { response } = await prompts({
     type: 'number',
     message,
@@ -29,7 +35,7 @@ export const count = async (message: string, initial: number = 100) => {
   return response
 }
 
-export const confirm = async (message: string) => {
+export const confirm = async (message: string): Promise<boolean> => {
   const { response } = await prompts({
     type: 'confirm',
     message,

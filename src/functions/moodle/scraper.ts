@@ -1,7 +1,3 @@
-/**
- * its hela ugly but gets the job done
- */
-
 import fs from 'fs'
 import path from 'path'
 import axios from 'axios'
