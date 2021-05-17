@@ -8,11 +8,15 @@ export const second = () => {
   return `${c[0]}` // second
 }
 
-export const sleep = (ms: number) =>
-  new Promise((resolve) => {
-    log(`Sleeping ${(ms / 1000).toFixed(1)}s (${numberWithComma(ms)}ms)`)
+export const sleep = (ms: number, reason: string = '') => {
+  const txt = `Sleeping ${(ms / 1000).toFixed(1)}s ${
+    reason ? `for ${reason}` : `(${numberWithComma(ms)}ms)`
+  }`
+  return new Promise((resolve) => {
+    log(txt)
     setTimeout(resolve, ms)
   })
+}
 
 export const getTime = () => {
   return Math.floor(new Date().getTime() / 1000)

@@ -28,3 +28,12 @@ export const count = async (message: string, initial: number = 100) => {
   })
   return response
 }
+
+export const confirm = async (message: string) => {
+  const { response } = await prompts({
+    type: 'confirm',
+    message,
+    name: 'response'
+  })
+  return response
+}

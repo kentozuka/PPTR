@@ -6,7 +6,14 @@ export default {
     password: '#j_password',
     submit: '#btn-save'
   },
-  course: 'https://wsdmoodle.waseda.jp/course/view.php?id=',
+  top: 'https://wsdmoodle.waseda.jp/my/',
   attendance: 'https://wsdmoodle.waseda.jp/mod/attendance/view.php?id=',
-  slide: '//*[contains(text(),"スライド")]/ancestor::a'
+  content: 'https://wcms.waseda.jp/em',
+  courceName: '.coursename',
+  smallSlideBc: 'contents/web_files/slide/small_slide_',
+  slide: '//*[contains(text(),"スライド")]/ancestor::a',
+  original: (id: string) =>
+    `https://wcms.waseda.jp/contents/WASEDA1001/${id}/contents/web_files/original.pdf`,
+  totalNum: '.vc-pctrl-total-page',
+  expand: '#toggles-all-opened'
 }
