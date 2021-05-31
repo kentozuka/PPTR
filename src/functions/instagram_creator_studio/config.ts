@@ -73,11 +73,14 @@ export const askLimit = async () => {
 }
 
 export const askPace = async (): Promise<number> => {
-  const value = await choose('How fast should I scrape?', paces)
+  const value = await choose<number>('How fast should I scrape?', paces)
   return value || 2 * k
 }
 
 export const chooseProvider = async (): Promise<Providers> => {
-  const value = await choose('What provider should I use?', providers)
+  const value = await choose<Providers>(
+    'What provider should I use?',
+    providers
+  )
   return value || 'local'
 }

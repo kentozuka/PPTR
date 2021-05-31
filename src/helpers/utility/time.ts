@@ -21,3 +21,7 @@ export const sleep = (ms: number, reason: string = '') => {
 export const getTime = () => {
   return Math.floor(new Date().getTime() / 1000)
 }
+
+export const zerod = (x: number) => {
+  return x > 9 ? `${x}` : `0${x}`
+}

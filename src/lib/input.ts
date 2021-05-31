@@ -9,10 +9,10 @@ export const ask = async (message: string) => {
   return response
 }
 
-export const choose = async (
+export const choose = async <T>(
   message: string,
   choices: Choice[]
-): Promise<string | number> => {
+): Promise<T> => {
   const { response } = await prompts({
     type: 'select',
     choices,

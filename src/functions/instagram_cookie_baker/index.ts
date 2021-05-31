@@ -6,22 +6,10 @@ import {
   initialize,
   terminate,
   accessSite,
-  PageA as Page,
-  sleep
+  sleep,
+  typeIn
 } from 'helpers'
 import { checkFile } from 'lib/io'
-
-async function typeIn(page: Page, selector: string, body: string) {
-  const check = await page.$(selector)
-  if (check) {
-    log(`Typing in ${selector}`)
-    await page.type(selector, body, { delay: 200 })
-    await sleep(1000)
-    return true
-  }
-  log(`No selector found for ${selector}`)
-  return false
-}
 
 !(async () => {
   try {

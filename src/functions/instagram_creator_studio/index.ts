@@ -114,15 +114,19 @@ async function main() {
       const len = checked.length
 
       const tip = tips[2 * len]
-      await tip.hover()
-      await tip.click()
+      if (tip) {
+        await tip.hover()
+        await tip.click()
 
-      page.waitForSelector(ss.modal).catch(() => log('Timeout'))
-      await sleep(pace)
-      const slided = await page.$(ss.modal)
-      if (slided) {
-        await page.click(ss.modalCloseBtn)
-        await cells[6 * len].click()
+        page.waitForSelector(ss.modal).catch(() => log('Modal timed out'))
+        await sleep(pace)
+        const slided = await page.$(ss.modal)
+        if (slided) {
+          await page.click(ss.modalCloseBtn)
+          await cells[6 * len].click()
+        }
+      } else {
+        log('No tip')
       }
     }
 
