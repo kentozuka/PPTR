@@ -10,7 +10,8 @@ export const env = {
   nodeEnv: e.NODE_ENV,
   debug: e.DEBUG == 'true',
   wasedaUsername: e.WASEDA_USERNAME,
-  wasedaPassword: e.WASEDA_PASSWORD
+  wasedaPassword: e.WASEDA_PASSWORD,
+  kentozukaPassword: e.KENTOZUKA_PASSWORD
 }
 
 export const checkEnv = (name: string, key: string) => {

@@ -1,14 +1,6 @@
 import fs from 'fs'
 
-import {
-  log,
-  terminate,
-  constants,
-  readTextFile,
-  initialize,
-  setCookie
-} from 'helpers'
-import { accessSite } from 'helpers/pptr/navigation'
+import { log, terminate, initialize, setCookie } from 'helpers'
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 let hashtags: string[] = [

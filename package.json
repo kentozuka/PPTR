@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node --files -r tsconfig-paths/register",
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p ./tsconfig.json",
     "execute": "node -r tsconfig-paths/register",
     "insights": "npm run start src/functions/instagram_creator_studio",
     "europe": "npm run start src/functions/moodle/attendance",

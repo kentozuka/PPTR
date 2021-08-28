@@ -33,6 +33,32 @@ export const initialize = async ({ headless, devtools, plain } = option) => {
   }
 }
 
+// should be in json but meh
+const knownLanguages = {
+  japanese: {
+    single: 'ja-JP',
+    multiple: ['ja-JP', 'ja']
+  }
+}
+
+export const setJapaneseForcefully = async (page: Page) => {
+  // Set the language forcefully on javascript
+  const jp = knownLanguages.japanese
+  // @ts-ignore
+  await page.evaluateOnNewDocument((jp) => {
+    Object.defineProperty(navigator, 'language', {
+      get: function () {
+        return jp.single
+      }
+    })
+    Object.defineProperty(navigator, 'languages', {
+      get: function () {
+        return jp.multiple
+      }
+    })
+  }, jp)
+}
+
 export const terminate = async (): Promise<boolean> => {
   try {
     if (!browser) {
@@ -49,5 +75,5 @@ export const terminate = async (): Promise<boolean> => {
 }
 
 // because i dont want to change the every import statement
-export interface BrowserA extends Browser { }
-export interface PageA extends Page { }
+export interface BrowserA extends Browser {}
+export interface PageA extends Page {}

@@ -59,7 +59,7 @@ async function main() {
       choices
     )
 
-    await page.goto(url, c.wait)
+    await page.goto(url as string, c.wait)
     await page.click(slctr.expand)
 
     const targets = await page.$x(slctr.slide)
